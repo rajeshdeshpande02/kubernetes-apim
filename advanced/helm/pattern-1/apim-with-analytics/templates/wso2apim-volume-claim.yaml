@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -19,14 +18,15 @@ metadata:
   namespace : {{ .Values.namespace }}
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-  storageClassName: ""
-  selector:
-    matchLabels:
-      purpose: apim-shared-deployment
+  storageClassName: azure-standard
+  # selector:
+  #  matchLabels:
+  #  matchLabels:
+  #    purpose: apim-shared-deployment
 
 ---
 
@@ -37,11 +37,11 @@ metadata:
   namespace : {{ .Values.namespace }}
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-  storageClassName: ""
-  selector:
-    matchLabels:
-      purpose: apim-shared-tenants
+  storageClassName: azure-standard
+  #  selector:
+  #  matchLabels:
+  #    purpose: apim-shared-tenants
